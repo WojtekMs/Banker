@@ -1,0 +1,49 @@
+[project]
+name = "banker"
+version = "0.1.0" 
+description = "Analyze PKO banking transactions"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+keywords = ["PKO", "transactions", "analyze"]
+authors = [
+  {name = "Wojciech Matusiak", email = "wojciech@matusiak.dev"}
+]
+maintainers = [
+  {name = "Wojciech Matusiak", email = "wojciech@matusiak.dev"}
+]
+# https://pypi.org/classifiers/
+classifiers = [
+  "Development Status :: 3 - Alpha",
+
+  "Intended Audience :: End Users/Desktop",
+
+  "Topic :: Office/Business :: Financial",
+
+  "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+
+  "Operating System :: POSIX :: Linux",
+]
+dependencies = [
+  "lxml",
+  "pandas",
+  "html5lib",
+  "beautifulsoup4",
+  "py-moneyed"
+]
+
+[project.optional-dependencies] # Optional
+dev = [
+  "pytest"
+]
+
+[project.scripts]
+banker = "banker.__main__:main"
+
+[build-system]
+requires = ["setuptools>=43.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
