@@ -16,7 +16,7 @@ class HtmlTransactionsParser(ITransactionsParser):
             tables = pandas.read_html(io.StringIO(content), attrs={'id': 'lista_transakcji'})
             return tables[0]
         except ValueError:
-            self.logger.warning(f"Invalid HTML literal, transactions table is missing")
+            self.logger.warning("Invalid HTML literal, transactions table is missing")
             return None
 
     def parse_transactions(self, content: str) -> list[Transaction]:
