@@ -1,22 +1,19 @@
-from dataclasses import dataclass 
+from dataclasses import dataclass
 
-@dataclass
+from banker.data.category import Category
+from moneyed import Money, PLN
+
+
+@dataclass(frozen=True)
 class Transaction:
-    _date: str 
-    _value: float 
-    _description: str
-    
-    @property
-    def date(self) -> str:
-        return self._date
-    
-    @property
-    def value(self) -> float:
-        return self._value
-    
-    @property
-    def description(self) -> str:
-        return self._description
-    
-    def count_matching(self, categories) -> int:
+    date: str
+    value: Money
+    description: str
+
+    def __post_init__(self):
+        if self.value.currency != PLN:
+            raise ValueError("The only accepted transaction currency is PLN")
+
+    def count_matching(self, categories: list[Category]) -> int:
+        # TODO: implement
         return 0

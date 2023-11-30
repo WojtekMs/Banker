@@ -30,7 +30,10 @@ classifiers = [
 ]
 dependencies = [
   "lxml",
-  "pandas"
+  "pandas",
+  "html5lib",
+  "beautifulsoup4",
+  "py-moneyed"
 ]
 
 [project.optional-dependencies] # Optional

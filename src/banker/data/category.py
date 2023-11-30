@@ -1,5 +1,7 @@
-from dataclasses import dataclass
 from enum import Enum, auto
+import re
+
+from moneyed import Money, PLN
 
 
 class PaymentType(Enum):
@@ -9,12 +11,18 @@ class PaymentType(Enum):
     occasional = auto()
 
 
-@dataclass
 class Category:
-    _name: str
-    _payment_type: PaymentType
-    _matching_regexes: str
-    _value: float
+    def __init__(self, name: str, payment_type: PaymentType, matching_regexes: list[str]):
+        self.__name = name
+        self.__payment_type = payment_type
+        self.__matching_regexes: list[re.Pattern] = [re.compile(pattern) for pattern in matching_regexes]
+        self.value = Money(amount='0', currency=PLN)
 
-    def add(self, transaction):
-        pass
+    def get_name(self) -> str:
+        return self.__name
+
+    def get_payment_type(self) -> PaymentType:
+        return self.__payment_type
+
+    def get_matching_regexes(self) -> list[re.Pattern]:
+        return self.__matching_regexes

@@ -19,5 +19,5 @@ for row_id, transaction in transactions_table.iterrows():
     if not amount:
         print("Nie znaleziono kwoty")
     print(description)
-    print(amount) #float
+    print(amount)  # float
     break
