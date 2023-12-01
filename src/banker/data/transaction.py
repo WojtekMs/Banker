@@ -8,12 +8,17 @@ from moneyed import Money, PLN
 class Transaction:
     date: str
     value: Money
+    type: str
     description: str
 
     def __post_init__(self):
         if self.value.currency != PLN:
             raise ValueError("The only accepted transaction currency is PLN")
 
-    def count_matching(self, categories: list[Category]) -> int:
-        # TODO: implement
-        return 0
+    def find_matching(self, categories: list[Category]) -> list[Category]:
+        result = []
+        for category in categories:
+            if any([True for pattern in category.get_matching_regexes() if
+                    pattern.search(self.description) is not None]):
+                result.append(category)
+        return result

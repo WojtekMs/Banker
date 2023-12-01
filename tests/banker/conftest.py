@@ -13,6 +13,7 @@ def transaction1():
                                                       "Data i czas operacji : 2023-10-30 "
                                                       "Oryginalna kwota operacji : 37.35 "
                                                       "Numer karty : 516931******3943",
+                       type="Płatność kartą",
                        value=Money(amount='-37.35', currency=PLN))
 
 
@@ -26,6 +27,7 @@ def transaction2():
                                                       "Data i czas operacji : 2023-10-30 "
                                                       "Oryginalna kwota operacji : 200.00 "
                                                       "Numer karty : 516931******3943",
+                       type="Wypłata z bankomatu",
                        value=Money(amount='-200.00', currency=PLN))
 
 
@@ -37,6 +39,7 @@ def transaction3():
                                                       "Adres : intercity.pl "
                                                       "'Operacja : 00000076965444780 "
                                                       "Numer referencyjny : 00000076965444780",
+                       type="Płatność web - kod mobilny",
                        value=Money(amount='-49.02', currency=PLN))
 
 
@@ -46,11 +49,15 @@ def transaction4():
                                                       "Adres nadawcy : "
                                                       "UL.GULASZOWA 0 "
                                                       "00-001 WROCŁAW POL "
-                                                      "Tytuł : WPŁATA", value=Money(amount='800.00', currency=PLN))
+                                                      "Tytuł : WPŁATA",
+                       type="Wpłata gotówkowa w kasie",
+                       value=Money(amount='800.00', currency=PLN))
 
 
 @pytest.fixture
 def transaction5():
     return Transaction(date="2023-10-08", description="Rachunek odbiorcy : 000000000000000000000 "
                                                       "Nazwa odbiorcy : Alicja "
-                                                      "Tytuł : Na korki", value=Money(amount='-50.00', currency=PLN))
+                                                      "Tytuł : Na korki",
+                       type="Zlecenie stałe",
+                       value=Money(amount='-50.00', currency=PLN))

@@ -5,10 +5,10 @@ from moneyed import Money, PLN
 
 
 class PaymentType(Enum):
-    household = auto()
-    recurring = auto()
-    optional = auto()
-    occasional = auto()
+    Household = auto()
+    Recurring = auto()
+    Optional = auto()
+    Occasional = auto()
 
 
 class Category:
@@ -17,6 +17,18 @@ class Category:
         self.__payment_type = payment_type
         self.__matching_regexes: list[re.Pattern] = [re.compile(pattern) for pattern in matching_regexes]
         self.value = Money(amount='0', currency=PLN)
+
+    def __eq__(self, other):
+        if type(other) is type(self):
+            return self.__dict__ == other.__dict__
+        return False
+
+    def __str__(self):
+        return f"Category(name={self.__name}, payment_type={self.__payment_type}, " \
+               f"matching_regexes={self.__matching_regexes}, value={self.value})"
+
+    def __repr__(self):
+        return self.__str__()
 
     def get_name(self) -> str:
         return self.__name
