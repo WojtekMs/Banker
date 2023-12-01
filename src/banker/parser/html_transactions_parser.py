@@ -39,6 +39,11 @@ class HtmlTransactionsParser(ITransactionsParser):
                 if value is None:
                     self.logger.warning(f"Value not found in transaction {row_id}")
                     continue
+                transaction_type = transaction.get("Typ transakcji")
+                if transaction_type is None:
+                    self.logger.warning(f"Transaction type not found in transaction {row_id}")
+                    continue
                 result.append(
-                    Transaction(date=date, description=description, value=Money(amount=str(value), currency=PLN)))
+                    Transaction(date=date, description=description, value=Money(amount=str(value), currency=PLN),
+                                type=transaction_type))
         return result
