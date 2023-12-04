@@ -310,7 +310,6 @@ TABLE_HEADERS_MISSING_HTML_TRANSACTIONS_LITERAL = """<html>
 </body>
 </html>"""
 
-
 TRANSACTIONS_TABLE_MISSING_HTML_TRANSACTIONS_LITERAL = """<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -334,6 +333,112 @@ TRANSACTIONS_TABLE_MISSING_HTML_TRANSACTIONS_LITERAL = """<html>
 <tr>
 <td>Rodzaj operacji</td>
 <td>Wszystkie</td>
+</tr>
+</tbody></table>
+</body>
+</html>"""
+
+DATE_INVALID_FORMAT_HTML_TRANSACTION_LITERAL_1 = """<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="Author" content="PKOInteligo (www.pkointeligo.pl)">
+</head>
+<body>
+<h3>Kryteria wyszukiwania</h3>
+<table id="search_criteria"><tbody>
+<tr>
+<td>Numer rachunku</td>
+<td>00000000000000000000000</td>
+</tr>
+<tr>
+<td>Od dnia</td>
+<td>2023-10-01</td>
+</tr>
+<tr>
+<td>Do dnia</td>
+<td>2023-11-01</td>
+</tr>
+<tr>
+<td>Rodzaj operacji</td>
+<td>Wszystkie</td>
+</tr>
+</tbody></table>
+<table id="lista_transakcji"><tbody>
+<tr>
+<th>Data operacji<br>
+</th>
+<th>Data waluty<br>
+</th>
+<th>Typ transakcji<br>
+</th>
+<th>Opis<br>
+</th>
+<th>Kwota<br>
+</th>
+<th>Waluta<br>
+</th>
+</tr>
+<tr>
+<td>2023-11</td>
+<td>2023-10-30</td>
+<td>Płatność kartą</td>
+<td>000015792<br>05272423303314705681107<br>Lokalizacja :<br>Adres : KAUFLAND PL 6663<br>Miasto : Gliwice<br>Kraj : POLSKA<br>Data i czas operacji : 2023-10-30<br>Oryginalna kwota operacji : 37.35<br>Numer karty : 516931******3943<br>
+</td>
+<td>-37.35</td>
+<td>PLN</td>
+</tr>
+</tbody></table>
+</body>
+</html>"""
+
+DATE_INVALID_FORMAT_HTML_TRANSACTION_LITERAL_2 = """<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="Author" content="PKOInteligo (www.pkointeligo.pl)">
+</head>
+<body>
+<h3>Kryteria wyszukiwania</h3>
+<table id="search_criteria"><tbody>
+<tr>
+<td>Numer rachunku</td>
+<td>00000000000000000000000</td>
+</tr>
+<tr>
+<td>Od dnia</td>
+<td>2023-10-01</td>
+</tr>
+<tr>
+<td>Do dnia</td>
+<td>2023-11-01</td>
+</tr>
+<tr>
+<td>Rodzaj operacji</td>
+<td>Wszystkie</td>
+</tr>
+</tbody></table>
+<table id="lista_transakcji"><tbody>
+<tr>
+<th>Data operacji<br>
+</th>
+<th>Data waluty<br>
+</th>
+<th>Typ transakcji<br>
+</th>
+<th>Opis<br>
+</th>
+<th>Kwota<br>
+</th>
+<th>Waluta<br>
+</th>
+</tr>
+<tr>
+<td>2023-11-01-05</td>
+<td>2023-10-30</td>
+<td>Płatność kartą</td>
+<td>000015792<br>05272423303314705681107<br>Lokalizacja :<br>Adres : KAUFLAND PL 6663<br>Miasto : Gliwice<br>Kraj : POLSKA<br>Data i czas operacji : 2023-10-30<br>Oryginalna kwota operacji : 37.35<br>Numer karty : 516931******3943<br>
+</td>
+<td>-37.35</td>
+<td>PLN</td>
 </tr>
 </tbody></table>
 </body>
