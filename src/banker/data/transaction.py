@@ -1,3 +1,4 @@
+import datetime
 from dataclasses import dataclass
 
 from banker.data.category import Category
@@ -6,7 +7,7 @@ from moneyed import Money, PLN
 
 @dataclass(frozen=True)
 class Transaction:
-    date: str
+    date: datetime.date
     value: Money
     type: str
     description: str

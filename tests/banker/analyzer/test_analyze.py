@@ -8,6 +8,8 @@ from banker.data.category import Category, PaymentType
 from banker.data.transaction import Transaction
 from banker.analyzer.analyze import analyze_transactions, AnalyzeResult
 
+from tests.banker.conftest import make_transaction
+
 
 def make_category_with_value(category: Category, value: Money) -> Category:
     category_copy = deepcopy(category)
@@ -20,8 +22,7 @@ def make_category_with_value(category: Category, value: Money) -> Category:
     [
         (
                 [
-                    Transaction(date="2023-01-01", value=Money(amount="-11.27", currency=PLN), description="New shoes",
-                                type="Card")
+                    make_transaction(value="-11.27", description="New shoes")
                 ],
                 [
                     Category(name="Shoes", payment_type=PaymentType.Optional, matching_regexes=[r"(?i)shoes"])
@@ -34,12 +35,9 @@ def make_category_with_value(category: Category, value: Money) -> Category:
         ),
         (
                 [
-                    Transaction(date="2023-01-01", value=Money(amount="-13.30", currency=PLN),
-                                description="Amazing trekking shoes", type="Card"),
-                    Transaction(date="2023-01-02", value=Money(amount="-16.70", currency=PLN),
-                                description="Casual shoes", type="Card"),
-                    Transaction(date="2023-01-03", value=Money(amount="-20.00", currency=PLN),
-                                description="Dancing shoes", type="Card")
+                    make_transaction(value="-13.30", description="Amazing trekking shoes"),
+                    make_transaction(value="-16.70", description="Casual shoes"),
+                    make_transaction(value="-20.00", description="Dancing shoes")
                 ],
                 [
                     Category(name="Shoes", payment_type=PaymentType.Optional, matching_regexes=[r"(?i)shoes"])
@@ -52,12 +50,9 @@ def make_category_with_value(category: Category, value: Money) -> Category:
         ),
         (
                 [
-                    Transaction(date="2023-01-01", value=Money(amount="-15.00", currency=PLN),
-                                description="Amazing trekking shoes", type="Card"),
-                    Transaction(date="2023-01-02", value=Money(amount="-33.00", currency=PLN),
-                                description="Cheap shirts", type="Card"),
-                    Transaction(date="2023-01-03", value=Money(amount="-50.00", currency=PLN),
-                                description="Expensive sweets", type="Card")
+                    make_transaction(value="-15.00", description="Amazing trekking shoes"),
+                    make_transaction(value="-33.00", description="Cheap shirts"),
+                    make_transaction(value="-50.00", description="Expensive sweets"),
                 ],
                 [
                     Category(name="Shoes", payment_type=PaymentType.Optional, matching_regexes=[r"(?i)shoes"]),
@@ -79,10 +74,8 @@ def make_category_with_value(category: Category, value: Money) -> Category:
         ),
         (
                 [
-                    Transaction(date="2023-01-01", value=Money(amount="-11.27", currency=PLN), description="New shoes",
-                                type="Card"),
-                    Transaction(date="2023-01-02", value=Money(amount="-500.00", currency=PLN), description="New game",
-                                type="Card")
+                    make_transaction(value="-11.27", description="New shoes"),
+                    make_transaction(value="-500.00", description="New game"),
                 ],
                 [
                     Category(name="Shoes", payment_type=PaymentType.Optional, matching_regexes=[r"(?i)shoes"])
@@ -90,8 +83,7 @@ def make_category_with_value(category: Category, value: Money) -> Category:
 
                 AnalyzeResult(
                     unmatched_transactions=[
-                        Transaction(date="2023-01-02", value=Money(amount="-500.00", currency=PLN),
-                                    description="New game", type="Card")],
+                        make_transaction(value="-500.00", description="New game")],
                     matched_categories=[
                         make_category_with_value(
                             Category(name="Shoes", payment_type=PaymentType.Optional, matching_regexes=[r"(?i)shoes"]),
@@ -100,8 +92,7 @@ def make_category_with_value(category: Category, value: Money) -> Category:
         ),
         (
                 [
-                    Transaction(date="2023-01-01", value=Money(amount="-11.27", currency=PLN), description="New shoes",
-                                type="Card"),
+                    make_transaction(value="-11.27", description="New shoes"),
                 ],
                 [
                     Category(name="Shoes", payment_type=PaymentType.Optional, matching_regexes=[r"(?i)shoes"]),
@@ -109,14 +100,13 @@ def make_category_with_value(category: Category, value: Money) -> Category:
                 ],
 
                 AnalyzeResult(
-                    unmatched_transactions=[Transaction(date="2023-01-01", value=Money(amount="-11.27", currency=PLN),
-                                                        description="New shoes", type="Card")],
+                    unmatched_transactions=[
+                        make_transaction(value="-11.27", description="New shoes")],
                     matched_categories=[])
         ),
         (
                 [
-                    Transaction(date="2023-01-01", value=Money(amount="-11.27", currency=PLN), description="New shoes",
-                                type="Card"),
+                    make_transaction(value="-11.27", description="New shoes"),
                 ],
                 [
                     Category(name="Shoes", payment_type=PaymentType.Optional, matching_regexes=[r"(?i)shoes"]),
@@ -133,16 +123,14 @@ def make_category_with_value(category: Category, value: Money) -> Category:
         ),
         (
                 [
-                    Transaction(date="2023-01-01", value=Money(amount="-11.27", currency=PLN), description="New shoes",
-                                type="Card"),
+                    make_transaction(value="-11.27", description="New shoes"),
                 ],
                 [
                     Category(name="Weirdo", payment_type=PaymentType.Optional, matching_regexes=[r"what?"])
                 ],
 
                 AnalyzeResult(
-                    unmatched_transactions=[Transaction(date="2023-01-01", value=Money(amount="-11.27", currency=PLN),
-                                                        description="New shoes", type="Card")],
+                    unmatched_transactions=[make_transaction(value="-11.27", description="New shoes")],
                     matched_categories=[])
         ),
         (
@@ -157,18 +145,16 @@ def make_category_with_value(category: Category, value: Money) -> Category:
         ),
         (
                 [
-                    Transaction(date="2023-01-01", value=Money(amount="-11.27", currency=PLN), description="New shoes",
-                                type="Card"),
-                    Transaction(date="2023-01-02", value=Money(amount="-500.00", currency=PLN), description="New game",
-                                type="Card")
+                    make_transaction(value="-11.27", description="New shoes"),
+                    make_transaction(value="-500.00", description="New game"),
                 ],
                 [],
 
                 AnalyzeResult(
-                    unmatched_transactions=[Transaction(date="2023-01-01", value=Money(amount="-11.27", currency=PLN),
-                                                        description="New shoes", type="Card"),
-                                            Transaction(date="2023-01-02", value=Money(amount="-500.00", currency=PLN),
-                                                        description="New game", type="Card")],
+                    unmatched_transactions=[
+                        make_transaction(value="-11.27", description="New shoes"),
+                        make_transaction(value="-500.00", description="New game"),
+                    ],
                     matched_categories=[])
         ),
         (
@@ -181,12 +167,9 @@ def make_category_with_value(category: Category, value: Money) -> Category:
         ),
         (
                 [
-                    Transaction(date="2023-01-01", value=Money(amount="-11.27", currency=PLN), description="New shoes",
-                                type="Card"),
-                    Transaction(date="2023-01-02", value=Money(amount="500.00", currency=PLN), description="Refund two",
-                                type="Card"),
-                    Transaction(date="2023-01-02", value=Money(amount="25.00", currency=PLN), description="Refund one",
-                                type="Card")
+                    make_transaction(value="-11.27", description="New shoes"),
+                    make_transaction(value="500.00", description="Refund one"),
+                    make_transaction(value="25.00", description="Refund two"),
                 ],
                 [
                     Category(name="Shoes", payment_type=PaymentType.Optional, matching_regexes=[r"(?i)shoes"]),
