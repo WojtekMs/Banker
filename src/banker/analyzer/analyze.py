@@ -1,5 +1,7 @@
 from dataclasses import dataclass
 
+from moneyed import Money, PLN
+
 from banker.data.category import Category
 from banker.data.transaction import Transaction
 from logging import getLogger
@@ -16,6 +18,7 @@ class AnalyzeResult:
 def analyze_transactions(transactions: list[Transaction], supported_categories: list[Category]) -> AnalyzeResult:
     unmatched_transactions = []
     matched_categories = {}
+    transactions = [transaction for transaction in transactions if transaction.value < Money(amount='0', currency=PLN)]
     for transaction in transactions:
         matching_categories = transaction.find_matching(supported_categories)
         matching_categories_count = len(matching_categories)

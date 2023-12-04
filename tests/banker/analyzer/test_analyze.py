@@ -179,6 +179,26 @@ def make_category_with_value(category: Category, value: Money) -> Category:
                     unmatched_transactions=[],
                     matched_categories=[])
         ),
+        (
+                [
+                    Transaction(date="2023-01-01", value=Money(amount="-11.27", currency=PLN), description="New shoes",
+                                type="Card"),
+                    Transaction(date="2023-01-02", value=Money(amount="500.00", currency=PLN), description="Refund two",
+                                type="Card"),
+                    Transaction(date="2023-01-02", value=Money(amount="25.00", currency=PLN), description="Refund one",
+                                type="Card")
+                ],
+                [
+                    Category(name="Shoes", payment_type=PaymentType.Optional, matching_regexes=[r"(?i)shoes"]),
+                    Category(name="Refund one", payment_type=PaymentType.Optional, matching_regexes=["Refund one"]),
+                ],
+
+                AnalyzeResult(
+                    unmatched_transactions=[],
+                    matched_categories=[make_category_with_value(
+                        Category(name="Shoes", payment_type=PaymentType.Optional, matching_regexes=[r"(?i)shoes"]),
+                        Money(amount="-11.27", currency=PLN))])
+        )
     ],
     ids=["given matching transaction to one category then return matched category with increased value",
          "given many matching transactions to one category then return matched category with increased value",
@@ -189,7 +209,8 @@ def make_category_with_value(category: Category, value: Money) -> Category:
          "given one transaction that does not match then return unmatched transaction and no categories",
          "given no transactions then return empty list of both transactions and categories",
          "given transactions and empty list of categories then return all transactions as unmatched",
-         "given empty transactions and empty categories then return empty lists"]
+         "given empty transactions and empty categories then return empty lists",
+         "given transaction with positive value then ignore it"]
 )
 def test_given_transactions_and_supported_categories_when_analyze_then_return_result(
         transactions, supported_categories, expected_result
