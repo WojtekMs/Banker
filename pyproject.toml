@@ -33,7 +33,8 @@ dependencies = [
   "pandas",
   "html5lib",
   "beautifulsoup4",
-  "py-moneyed"
+  "py-moneyed",
+  "openpyxl"
 ]
 
 [project.optional-dependencies] # Optional

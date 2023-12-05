@@ -7,8 +7,8 @@ from moneyed import Money, PLN
 class PaymentType(Enum):
     Household = auto()
     Recurring = auto()
-    Optional = auto()
     Occasional = auto()
+    Optional = auto()
 
 
 class Category:
