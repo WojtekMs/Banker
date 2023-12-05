@@ -34,7 +34,9 @@ dependencies = [
   "html5lib",
   "beautifulsoup4",
   "py-moneyed",
-  "openpyxl"
+  "openpyxl",
+  "semver",
+  "importlib-resources"
 ]
 
 [project.optional-dependencies] # Optional

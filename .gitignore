@@ -6,3 +6,4 @@ __pycache__
 .idea
 unmatched_transactions.html
 *.xlsx
+output

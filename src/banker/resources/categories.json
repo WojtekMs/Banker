@@ -1,0 +1,152 @@
+{
+  "version": "1.0.0",
+  "categories": [
+    {
+      "name": "Kaufland",
+      "payment_type": "household",
+      "matching_regexes": [
+        "KAUFLAND PL"
+      ]
+    },
+    {
+      "name": "Bilety PKP",
+      "payment_type": "occasional",
+      "matching_regexes": [
+        "intercity\\.pl"
+      ]
+    },
+    {
+      "name": "Leclerc",
+      "payment_type": "household",
+      "matching_regexes": [
+        "eLeclerc"
+      ]
+    },
+    {
+      "name": "Biedronka",
+      "payment_type": "household",
+      "matching_regexes": [
+        "BIEDRONKA"
+      ]
+    },
+    {
+      "name": "Obuwie",
+      "payment_type": "occasional",
+      "matching_regexes": [
+        "eobuwie\\.com\\.pl"
+      ]
+    },
+    {
+      "name": "Netto",
+      "payment_type": "household",
+      "matching_regexes": [
+        "NETTO"
+      ]
+    },
+    {
+      "name": "Paliwo",
+      "payment_type": "household",
+      "matching_regexes": [
+        "ORLEN"
+      ]
+    },
+    {
+      "name": "Darowizny",
+      "payment_type": "optional",
+      "matching_regexes": [
+        "DAROWIZNA"
+      ]
+    },
+    {
+      "name": "Carrefour",
+      "payment_type": "household",
+      "matching_regexes": [
+        "CARREFOUR"
+      ]
+    },
+    {
+      "name": "Piekarnie",
+      "payment_type": "household",
+      "matching_regexes": [
+        "(?i)piekarnia"
+      ]
+    },
+    {
+      "name": "Drogerie",
+      "payment_type": "household",
+      "matching_regexes": [
+        "HEBE"
+      ]
+    },
+    {
+      "name": "Pralnie",
+      "payment_type": "occasional",
+      "matching_regexes": [
+        "PRALNIA"
+      ]
+    },
+    {
+      "name": "Bilety MPK Wrocław",
+      "payment_type": "household",
+      "matching_regexes": [
+        "URBANCARD"
+      ]
+    },
+    {
+      "name": "Spotify",
+      "payment_type": "recurring",
+      "matching_regexes": [
+        "Spotify"
+      ]
+    },
+    {
+      "name": "Action",
+      "payment_type": "household",
+      "matching_regexes": [
+        "Action"
+      ]
+    },
+    {
+      "name": "Lidl",
+      "payment_type": "household",
+      "matching_regexes": [
+        "LIDL"
+      ]
+    },
+    {
+      "name": "RTV Euro AGD",
+      "payment_type": "occasional",
+      "matching_regexes": [
+        "EURO\\-NET"
+      ]
+    },
+    {
+      "name": "Abonament telefoniczny",
+      "payment_type": "recurring",
+      "matching_regexes": [
+        "24\\.play\\.pl"
+      ]
+    },
+    {
+      "name": "Castorama",
+      "payment_type": "occassional",
+      "matching_regexes": [
+        "CASTORAMA"
+      ]
+    },
+    {
+      "name": "McDonalds",
+      "payment_type": "optional",
+      "matching_regexes": [
+        "MCDONALDS"
+      ]
+    },
+    {
+      "name": "Lody",
+      "payment_type": "optional",
+      "matching_regexes": [
+        "(?i)lodziarnia"
+      ]
+    }
+  ]
+}

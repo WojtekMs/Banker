@@ -1,4 +1,3 @@
-import datetime
 from dataclasses import dataclass
 
 from moneyed import Money, PLN
