@@ -1,3 +1,4 @@
+import datetime
 from copy import deepcopy
 
 import pytest
@@ -5,8 +6,7 @@ import pytest
 from moneyed import Money, PLN
 
 from banker.data.category import Category, PaymentType
-from banker.data.transaction import Transaction
-from banker.analyzer.analyze import analyze_transactions, AnalyzeResult
+from banker.analyzer.analyze import analyze_transactions, AnalyzeResult, deduce_month_year, MonthYear
 
 from tests.banker.conftest import make_transaction
 
@@ -199,5 +199,33 @@ def test_given_transactions_and_supported_categories_when_analyze_then_return_re
         transactions, supported_categories, expected_result
 ):
     actual_result = analyze_transactions(transactions, supported_categories)
+
+    assert actual_result == expected_result
+
+
+def test_given_chronologically_sorted_transactions_when_deduce_month_year_then_return_month_year():
+    transactions = [make_transaction(date=datetime.date(year=2023, month=10, day=10)),
+                    make_transaction(date=datetime.date(year=2023, month=11, day=1)),
+                    make_transaction(date=datetime.date(year=2023, month=11, day=2)),
+                    make_transaction(date=datetime.date(year=2023, month=11, day=3)),
+                    make_transaction(date=datetime.date(year=2023, month=11, day=4)),
+                    ]
+    expected_result = MonthYear(year=2023, month=11)
+
+    actual_result = deduce_month_year(transactions)
+
+    assert actual_result == expected_result
+
+
+def test_given_not_chronologically_sorted_transactions_when_deduce_month_year_then_return_month_year():
+    transactions = [make_transaction(date=datetime.date(year=2023, month=10, day=10)),
+                    make_transaction(date=datetime.date(year=2023, month=11, day=1)),
+                    make_transaction(date=datetime.date(year=2023, month=11, day=2)),
+                    make_transaction(date=datetime.date(year=2023, month=11, day=3)),
+                    make_transaction(date=datetime.date(year=2023, month=10, day=15)),
+                    ]
+    expected_result = MonthYear(year=2023, month=11)
+
+    actual_result = deduce_month_year(transactions)
 
     assert actual_result == expected_result

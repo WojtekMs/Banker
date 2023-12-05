@@ -1,3 +1,4 @@
+import datetime
 from dataclasses import dataclass
 
 from moneyed import Money, PLN
@@ -13,6 +14,25 @@ analyze_logger = getLogger("Analyze")
 class AnalyzeResult:
     unmatched_transactions: list[Transaction]
     matched_categories: list[Category]
+
+
+@dataclass(frozen=True)
+class MonthYear:
+    month: int
+    year: int
+
+
+def deduce_month_year(transactions: list[Transaction]) -> MonthYear:
+    year_count = {}
+    month_count = {}
+    for transaction in transactions:
+        year_count.setdefault(transaction.date.year, 0)
+        year_count[transaction.date.year] += 1
+        month_count.setdefault(transaction.date.month, 0)
+        month_count[transaction.date.month] += 1
+    the_most_common_year = max(year_count, key=year_count.get)
+    the_most_common_month = max(month_count, key=month_count.get)
+    return MonthYear(year=the_most_common_year, month=the_most_common_month)
 
 
 def analyze_transactions(transactions: list[Transaction], supported_categories: list[Category]) -> AnalyzeResult:

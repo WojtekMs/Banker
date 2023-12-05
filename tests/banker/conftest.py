@@ -4,8 +4,9 @@ import datetime
 from moneyed import Money, PLN
 
 
-def make_transaction(value: str, description: str) -> Transaction:
-    return Transaction(date=datetime.date(year=2023, month=11, day=1),
+def make_transaction(value: str = "-10.00", description: str = "Example",
+                     date=datetime.date(year=2023, month=11, day=1)) -> Transaction:
+    return Transaction(date=date,
                        value=Money(amount=value, currency=PLN),
                        description=description,
                        type="Card")
