@@ -24,8 +24,11 @@ class ExcelCategoriesWriter(ICategoriesWriter):
         self.__bold_font = Font(bold=True)
         self.__title_cell_location = Location(row=2, col=2)
         self.__table_headers_locations = self.__generate_table_headers_locations()
-        self.__next_category_location = {payment_type: Location(location.row + 1, location.col) for
-                                         payment_type, location in self.__table_headers_locations.items()}
+        self.__next_category_location = self.__make_next_category_location()
+
+    def __make_next_category_location(self):
+        return {payment_type: Location(location.row + 1, location.col) for
+                payment_type, location in self.__table_headers_locations.items()}
 
     def __generate_table_headers_locations(self):
         result = {}
@@ -55,6 +58,7 @@ class ExcelCategoriesWriter(ICategoriesWriter):
             subheader_category_cell.font = self.__bold_font
 
     def __set_categories(self, sheet: Worksheet, categories: list[Category]):
+        self.__next_category_location = self.__make_next_category_location()
         for category in categories:
             location = self.__next_category_location[category.get_payment_type()]
             sheet.cell(row=location.row, column=location.col, value=abs(category.value.amount))
