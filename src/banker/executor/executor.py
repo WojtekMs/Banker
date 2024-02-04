@@ -1,7 +1,7 @@
 import os
 
 from banker.analyzer.analyze import deduce_month_year, analyze_transactions
-from banker.common.filesystem import get_parsed_categories, get_parsed_transactions, save_to_file
+from banker.common.filesystem import save_to_file, read_file
 from banker.formatter.interfaces.transactions_formatter import ITransactionsFormatter
 from banker.formatter.month_year_formatter import format_month_year
 from banker.parser.interfaces.categories_parser import ICategoriesParser
@@ -22,9 +22,9 @@ class Executor:
         output_unmatched_transactions_filepath = os.path.join(output_directory, "unmatched_transactions.html")
         output_matched_categories_filepath = os.path.join(output_directory, "autogen_budget.xlsx")
 
-        all_transactions = get_parsed_transactions(self.__transactions_parser, transactions_filepath)
+        all_transactions = self.__transactions_parser.parse_transactions(read_file(transactions_filepath))
         month_year = deduce_month_year(all_transactions)
-        supported_categories = get_parsed_categories(self.__categories_parser, categories_filepath)
+        supported_categories = self.__categories_parser.parse_categories(read_file(categories_filepath))
         analyze_result = analyze_transactions(all_transactions, supported_categories)
         formatted_transactions = self.__transactions_formatter.format_transactions(
             analyze_result.unmatched_transactions)
