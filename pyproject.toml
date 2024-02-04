@@ -36,7 +36,8 @@ dependencies = [
   "py-moneyed",
   "openpyxl",
   "semver",
-  "importlib-resources"
+  "importlib-resources",
+  "pywin32"
 ]
 
 [project.optional-dependencies] # Optional
