@@ -1,3 +1,4 @@
+import logging
 import tkinter as tk
 from tkinter import filedialog
 from tkinter import messagebox
@@ -12,6 +13,7 @@ from banker.writer.excel_categories_writer import ExcelCategoriesWriter
 
 class GuiManager:
     def __init__(self):
+        self.__logger = logging.getLogger(self.__class__.__name__)
         self.__app_name = "Bankier"
         self.__select_categories_button_title = "Wybierz plik konfiguracyjny"
         self.__select_transactions_button_title = "Wybierz plik z transakcjami"
@@ -74,6 +76,7 @@ class GuiManager:
         if not categories_filepath:
             return
         self.__categories_filepath = categories_filepath
+        self.__logger.info(f"Categories filepath set to: {self.__categories_filepath}")
 
     def __set_transactions_file(self):
         self.__transactions_filepath = filedialog.askopenfilename(title=self.__select_transactions_dialog_title,
@@ -85,22 +88,28 @@ class GuiManager:
             self.__transactions_filepath = None
             self.__select_file_button.configure(bg=self.__select_file_button_default_color)
             self.__select_file_button.configure(activebackground=self.__select_file_button_default_active_color)
+        self.__logger.info(f"Transactions filepath set to: {self.__transactions_filepath}")
+
+    def __set_output_directory(self):
+        self.__output_directory = filedialog.askdirectory(title=self.__select_output_dir_dialog_title)
+        if not self.__output_directory:
+            self.__output_directory = None
+        self.__logger.info(f"Output directory set to: {self.__output_directory}")
 
     def __analyze(self):
         if not self.__transactions_filepath:
             tk.messagebox.showerror(title="Błąd",
                                     message=f"Musisz wybrać plik z transakcjami")
             return
-        self.__output_directory = filedialog.askdirectory(title=self.__select_output_dir_dialog_title)
+        self.__set_output_directory()
         if not self.__output_directory:
-            self.__output_directory = None
             return
-
         try:
             self.__executor.execute(self.__transactions_filepath, self.__categories_filepath, self.__output_directory)
             tk.messagebox.showinfo(title="Sukces",
                                    message=f"Pliki wyjściowe zapisano w katalogu: {self.__output_directory}")
         except Exception as e:
+            self.__logger.exception(e)
             tk.messagebox.showerror(title="Błąd",
                                     message=f"Wystąpił błąd: {e}")
 
