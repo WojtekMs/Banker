@@ -1,7 +1,6 @@
 import logging
 import logging.handlers
 import os
-from datetime import datetime
 
 from banker.gui.manager import GuiManager
 
@@ -9,7 +8,8 @@ from banker.gui.manager import GuiManager
 def configure_logging():
     root_logger = logging.getLogger()
     root_logger.setLevel(logging.DEBUG)
-    log_formatter = logging.Formatter(fmt="[{asctime}][T:{thread}][{name}][{funcName}][{levelname}] {message}", style='{')
+    log_formatter = logging.Formatter(fmt="[{asctime}][T:{thread}][{name}][{funcName}][{levelname}] {message}",
+                                      style='{')
     console_handler = logging.StreamHandler()
     console_handler.setLevel(logging.WARNING)
     console_handler.setFormatter(log_formatter)
