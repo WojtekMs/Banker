@@ -42,7 +42,8 @@ dependencies = [
 
 [project.optional-dependencies] # Optional
 dev = [
-  "pytest"
+  "pytest",
+  "pytest-mock"
 ]
 
 [project.scripts]

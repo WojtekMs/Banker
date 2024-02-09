@@ -31,6 +31,9 @@ def test_given_empty_transactions_when_format_transactions_then_return_empty_tab
 
 def test_given_transactions_when_format_transactions_then_return_html_table_with_headers_and_rows(
         html_transactions_formatter_sut, transaction1, transaction2):
+    html_hard_space = "\xa0"
+    expected_transaction_1_value = f"-37,35{html_hard_space}zł"
+    expected_transaction_2_value = f"-200,00{html_hard_space}zł"
     expected_result = ('<table border="1" class="dataframe">\n'
                        '  <thead>\n'
                        '    <tr style="text-align: right;">\n'
@@ -47,14 +50,14 @@ def test_given_transactions_when_format_transactions_then_return_html_table_with
                        f'      <td>{transaction1.date}</td>\n'
                        f'      <td>{transaction1.type}</td>\n'
                        f'      <td>{transaction1.description}</td>\n'
-                       f'      <td>{transaction1.value}</td>\n'
+                       f'      <td>{expected_transaction_1_value}</td>\n'
                        '    </tr>\n'
                        '    <tr>\n'
                        '      <th>1</th>\n'
                        f'      <td>{transaction2.date}</td>\n'
                        f'      <td>{transaction2.type}</td>\n'
                        f'      <td>{transaction2.description}</td>\n'
-                       f'      <td>{transaction2.value}</td>\n'
+                       f'      <td>{expected_transaction_2_value}</td>\n'
                        '    </tr>\n'
                        '  </tbody>\n'
                        '</table>')
