@@ -14,7 +14,8 @@ class Transaction:
 
     def __post_init__(self):
         if self.value.currency != PLN:
-            raise ValueError("The only accepted transaction currency is PLN")
+            raise ValueError("The only accepted transaction currency is PLN, "
+                             f"but is: {self.value.currency}")
 
     def find_matching(self, categories: list[Category]) -> list[Category]:
         result = []
