@@ -25,6 +25,12 @@ This file contains a list of categories with a:
 
 When adding your own categories please pay attention to correctly specify matching regexes, as they are inside JSON file (for example you have to use double escape slash to escape a special character in regex), eg: `"EURO\\-NET"`
 
+### Personalization recommendations 
+When adding new categories this simple heuristic for selecting payment type might help you:
+- use `ocassional` if this transaction had to be done by certain deadline (eg: motor liability insurance; present for someone's birthday;)
+- use `optional` if this transaction was not required in a specific month and could be postponed to another one (eg: going out to a theater; buying new furniture;)
+- use `recurring` if this transaction is part of your monthly routine (eg: flat rental)
+- use `household` if this transaction is part of your daily routine (eg: groceries; fuel; drugs from pharmacy; gym;)
 ## Development setup
 
 ```commandline
